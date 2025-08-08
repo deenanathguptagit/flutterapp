@@ -5,6 +5,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Home Page"), elevation: 0));
+    return Scaffold(
+      body: Center(child: MaterialBannerTheme(child: Text("Home Page"))),
+    );
   }
 }

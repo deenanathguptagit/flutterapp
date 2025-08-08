@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/profile_page.dart';
+import 'package:flutterapp/pages/setting_page.dart';
 
-class FirstPage extends StatelessWidget {
+import 'home_page.dart';
+
+class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
+
+  @override
+  State<FirstPage> createState() => _FirstPageState();
+}
+
+class _FirstPageState extends State<FirstPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List _pages = [HomePage(), ProfilePage(), SettingPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -11,29 +30,18 @@ class FirstPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.blue,
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.deepPurple[100],
-        child: Column(
-          children: [
-            DrawerHeader(
-              child: Icon(Icons.favorite, color: Colors.red, size: 48),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
-
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/homePage');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Settings"),
-              onTap: () => Navigator.pushNamed(context, '/settingsPage'),
-            ),
-          ],
-        ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
+        ],
       ),
     );
   }
