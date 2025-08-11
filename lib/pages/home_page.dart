@@ -1,12 +1,36 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/components/bottom_nav_bar.dart';
 
-class HomePage extends StatelessWidget {
+import 'CartPage.dart';
+import 'ShopPage.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  void navigateBottomNavBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List<Widget> _pages = [const ShopPage(), const CartPage()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: MaterialBannerTheme(child: Text("Home Page"))),
+      backgroundColor: Colors.grey[300],
+      bottomNavigationBar: MyBottomNavBar(
+        onTabChange: (index) => navigateBottomNavBar(index),
+      ),
+      body: _pages[_selectedIndex],
     );
   }
 }
