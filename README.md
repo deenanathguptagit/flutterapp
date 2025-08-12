@@ -48,7 +48,6 @@ You can check out the code in the following branches for different features:
 - <div style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
   <!-- Android Section -->
   <div style="flex: 1; margin-right: 20px;">
-    <h3>📱 Android Screenshots</h3>
     <p>
       <img src="lib/screenshot/Screenshot_20250809_032538.png" alt="Android Screenshot 1" width="200" style="display: inline-block; margin-right: 10px;"/>
       <img src="lib/screenshot/Screenshot_20250809_032615.png" alt="Android Screenshot 2" width="200" style="display: inline-block;"/>
