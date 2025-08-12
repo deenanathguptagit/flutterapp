@@ -3,8 +3,9 @@ import 'package:flutterapp/model/Product.dart';
 
 class ShowTile extends StatelessWidget {
   final Product product;
+  final Function()? onTap;
 
-  const ShowTile({super.key, required this.product});
+  ShowTile({super.key, required this.product, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -66,16 +67,22 @@ class ShowTile extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => onTap!()),
                   ),
-                  child: const Icon(Icons.add, color: Colors.white, size: 28),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      ),
+                    ),
+                    child: const Icon(Icons.add, color: Colors.white, size: 28),
+                  ),
                 ),
               ],
             ),

@@ -13,6 +13,10 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  void addToCart(Product product) {
+    Provider.of<Cart>(context, listen: false).addToCart(product);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
@@ -65,7 +69,10 @@ class _ShopPageState extends State<ShopPage> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   Product product = value.getProducts()[index];
-                  return ShowTile(product: product);
+                  return ShowTile(
+                    product: product,
+                    onTap: () => addToCart(product),
+                  );
                 },
               ),
             ),
